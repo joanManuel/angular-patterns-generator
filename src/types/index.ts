@@ -12,6 +12,9 @@ export interface ComponentOptions {
   selector: string;
   includeStyles: boolean;
   includeRouter: boolean;
+  includeModule: boolean;
+  angularVersion: number;
+  useModernRouting: boolean;
 }
 
 export interface TemplateGenerator {
@@ -21,4 +24,10 @@ export interface TemplateGenerator {
 export interface FileTemplate {
   filename: string;
   content: string;
+}
+
+export interface AngularProjectInfo {
+  version: number;
+  hasStandaloneApi: boolean;
+  useModernRouting: boolean;
 }

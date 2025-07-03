@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { TemplateGenerator, ComponentOptions } from '../../types';
+import { BaseGenerator } from '../../generators/base-generator';
 import { 
   getComponentTemplate, 
   getUseCaseTemplate, 
@@ -9,7 +10,11 @@ import {
   getStyleTemplate 
 } from './templates';
 
-export class CleanArchitectureGenerator implements TemplateGenerator {
+export class CleanArchitectureGenerator extends BaseGenerator implements TemplateGenerator {
+  protected isStandalonePattern(): boolean {
+    return false; // Clean Architecture puede usar módulos
+  }
+
   async generate(componentDir: string, options: ComponentOptions): Promise<void> {
     // Crear directorios
     const useCaseDir = path.join(componentDir, 'use-cases');
@@ -50,5 +55,8 @@ export class CleanArchitectureGenerator implements TemplateGenerator {
         getStyleTemplate(options)
       );
     }
+
+    // Generar módulo y routing usando la clase base
+    this.generateModuleAndRouting(componentDir, options);
   }
 }

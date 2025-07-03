@@ -1,13 +1,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { TemplateGenerator, ComponentOptions } from '../../types';
+import { BaseGenerator } from '../../generators/base-generator';
 import { 
   getComponentTemplate, 
   getHtmlTemplate, 
   getStyleTemplate 
 } from './templates';
 
-export class DumbComponentGenerator implements TemplateGenerator {
+export class DumbComponentGenerator extends BaseGenerator implements TemplateGenerator {
+  protected isStandalonePattern(): boolean {
+    return false; // Dumb components pueden usar módulos
+  }
+
   async generate(componentDir: string, options: ComponentOptions): Promise<void> {
     // Escribir archivos
     fs.writeFileSync(
@@ -26,5 +31,8 @@ export class DumbComponentGenerator implements TemplateGenerator {
         getStyleTemplate(options)
       );
     }
+
+    // Generar módulo y routing usando la clase base
+    this.generateModuleAndRouting(componentDir, options);
   }
 }

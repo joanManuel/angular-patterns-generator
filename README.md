@@ -5,10 +5,28 @@ Una extensión de VS Code que genera componentes Angular siguiendo diferentes pa
 ## ✨ Características
 
 - **5 Patrones de Arquitectura**: MVP, Clean Architecture, Standalone Components, Smart Components y Dumb Components
+- **Detección Automática de Angular**: Detecta la versión de Angular y adapta los templates automáticamente
+- **Routing Inteligente**: Genera routing moderno (Angular 19+) o clásico según la versión detectada
+- **Módulos Opcionales**: Soporte para generación de módulos en proyectos Angular clásicos
 - **Soporte Angular Moderno**: Incluye signals, inject(), functional routing guards y OnPush strategy
 - **TypeScript Completo**: Tipos estrictos y interfaces bien definidas
 - **Estructura Modular**: Templates organizados por patrón para fácil mantenimiento
 - **Integración con VS Code**: Menú contextual en el Explorer para generación rápida
+
+## 🔍 Detección Automática
+
+La extensión detecta automáticamente:
+- **Versión de Angular**: Lee el package.json para determinar la versión
+- **Tipo de Proyecto**: Identifica si usa standalone components o módulos
+- **Configuración de Routing**: Decide entre routing moderno o clásico
+
+### 🆕 Nuevas Opciones
+
+- **Incluir Módulo**: Genera archivos .module.ts para patrones que lo requieran
+- **Routing Adaptivo**: 
+  - Angular 19+: Archivos .routes.ts con functional guards
+  - Angular <19: Módulos de routing clásicos
+- **Detección de Proyecto**: Mensaje informativo sobre la versión detectada
 
 ## 🚀 Uso
 

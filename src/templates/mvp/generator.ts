@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { TemplateGenerator, ComponentOptions } from '../../types';
+import { BaseGenerator } from '../../generators/base-generator';
 import { 
   getComponentTemplate, 
   getPresenterTemplate, 
@@ -9,9 +10,13 @@ import {
   getStyleTemplate 
 } from './templates';
 
-export class MVPGenerator implements TemplateGenerator {
+export class MVPGenerator extends BaseGenerator implements TemplateGenerator {
+  protected isStandalonePattern(): boolean {
+    return false;
+  }
+
   async generate(componentDir: string, options: ComponentOptions): Promise<void> {
-    // Escribir archivos
+    // Escribir archivos principales del patrón MVP
     fs.writeFileSync(
       path.join(componentDir, `${options.componentName}.component.ts`), 
       getComponentTemplate(options)
@@ -38,5 +43,8 @@ export class MVPGenerator implements TemplateGenerator {
         getStyleTemplate(options)
       );
     }
+
+    // Generar módulo y routing usando la clase base
+    this.generateModuleAndRouting(componentDir, options);
   }
 }

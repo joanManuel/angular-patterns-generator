@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { TemplateGenerator, ComponentOptions } from '../../types';
+import { BaseGenerator } from '../../generators/base-generator';
 import { 
   getComponentTemplate, 
   getServiceTemplate, 
@@ -10,7 +11,11 @@ import {
   getStyleTemplate 
 } from './templates';
 
-export class StandaloneGenerator implements TemplateGenerator {
+export class StandaloneGenerator extends BaseGenerator implements TemplateGenerator {
+  protected isStandalonePattern(): boolean {
+    return true;
+  }
+
   async generate(componentDir: string, options: ComponentOptions): Promise<void> {
     // Crear directorio para componente detail
     const detailComponentDir = path.join(componentDir, `${options.componentName}-detail`);
@@ -34,14 +39,6 @@ export class StandaloneGenerator implements TemplateGenerator {
       getHtmlTemplate(options)
     );
 
-    // Escribir archivo de rutas si incluye router
-    if (options.includeRouter) {
-      fs.writeFileSync(
-        path.join(componentDir, `${options.componentName}.routes.ts`), 
-        getRoutesTemplate(options)
-      );
-    }
-
     // Escribir componente detail
     fs.writeFileSync(
       path.join(detailComponentDir, `${options.componentName}-detail.component.ts`), 
@@ -54,5 +51,8 @@ export class StandaloneGenerator implements TemplateGenerator {
         getStyleTemplate(options)
       );
     }
+
+    // Generar routing usando la clase base
+    this.generateModuleAndRouting(componentDir, options);
   }
 }

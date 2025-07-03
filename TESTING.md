@@ -30,7 +30,8 @@ En la ventana del Extension Host:
 1. Seleccionar **"MVP"**
 2. Ingresar nombre: `user-profile`
 3. Incluir estilos: **"Yes"**
-4. Incluir router: **"Yes"**
+4. Incluir routing: **"Yes"**
+5. Incluir módulo: **"Yes"** (si aparece la opción)
 
 **Archivos esperados:**
 ```
@@ -40,14 +41,17 @@ user-profile/
 ├── user-profile.component.scss
 ├── user-profile.presenter.ts
 ├── user-profile.model.ts
-└── user-profile.view.interface.ts
+├── user-profile.view.interface.ts
+├── user-profile.module.ts (si se incluyó módulo)
+└── user-profile-routing.module.ts o user-profile.routes.ts (según versión Angular)
 ```
 
 ##### 🏗️ Probar Clean Architecture Pattern
 1. Seleccionar **"Clean Architecture"**
 2. Ingresar nombre: `product-list`
 3. Incluir estilos: **"Yes"**
-4. Incluir router: **"No"**
+4. Incluir routing: **"No"**
+5. Incluir módulo: **"Yes"** (si aparece la opción)
 
 **Archivos esperados:**
 ```

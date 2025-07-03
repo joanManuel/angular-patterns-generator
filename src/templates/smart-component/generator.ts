@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { TemplateGenerator, ComponentOptions } from '../../types';
+import { BaseGenerator } from '../../generators/base-generator';
 import { 
   getComponentTemplate, 
   getServiceTemplate, 
@@ -8,7 +9,11 @@ import {
   getStyleTemplate 
 } from './templates';
 
-export class SmartComponentGenerator implements TemplateGenerator {
+export class SmartComponentGenerator extends BaseGenerator implements TemplateGenerator {
+  protected isStandalonePattern(): boolean {
+    return false; // Smart components pueden usar módulos
+  }
+
   async generate(componentDir: string, options: ComponentOptions): Promise<void> {
     // Escribir archivos
     fs.writeFileSync(
@@ -32,5 +37,8 @@ export class SmartComponentGenerator implements TemplateGenerator {
         getStyleTemplate(options)
       );
     }
+
+    // Generar módulo y routing usando la clase base
+    this.generateModuleAndRouting(componentDir, options);
   }
 }
