@@ -1,45 +1,48 @@
 # Angular Patterns Generator
 
-Una extensión de VS Code que genera componentes Angular siguiendo diferentes patrones de arquitectura y buenas prácticas. Ideal para mantener consistencia en proyectos grandes y acelerar el desarrollo.
+A VS Code extension that generates Angular components following different architectural patterns and best practices. Perfect for maintaining consistency in large projects and accelerating development.
 
-## ✨ Características
+## ✨ Features
 
-- **5 Patrones de Arquitectura**: MVP, Clean Architecture, Standalone Components, Smart Components y Dumb Components
-- **Detección Automática de Angular**: Detecta la versión de Angular y adapta los templates automáticamente
-- **Routing Inteligente**: Genera routing moderno (Angular 19+) o clásico según la versión detectada
-- **Módulos Opcionales**: Soporte para generación de módulos en proyectos Angular clásicos
-- **Soporte Angular Moderno**: Incluye signals, inject(), functional routing guards y OnPush strategy
-- **TypeScript Completo**: Tipos estrictos y interfaces bien definidas
-- **Estructura Modular**: Templates organizados por patrón para fácil mantenimiento
-- **Integración con VS Code**: Menú contextual en el Explorer para generación rápida
+- **5 Architecture Patterns**: MVP, Clean Architecture, Standalone Components, Smart Components, and Dumb Components
+- **Automatic Angular Detection**: Detects Angular version and adapts templates automatically
+- **Smart Routing**: Generates modern routing (Angular 19+) or classic routing based on detected version
+- **Optional Modules**: Support for module generation in classic Angular projects
+- **Modern Angular Support**: Includes signals, inject(), functional routing guards, and OnPush strategy
+- **Full TypeScript**: Strict types and well-defined interfaces
+- **Modular Structure**: Templates organized by pattern for easy maintenance
+- **VS Code Integration**: Context menu in Explorer for quick generation
 
-## 🔍 Detección Automática
+## 🔍 Automatic Detection
 
-La extensión detecta automáticamente:
-- **Versión de Angular**: Lee el package.json para determinar la versión
-- **Tipo de Proyecto**: Identifica si usa standalone components o módulos
-- **Configuración de Routing**: Decide entre routing moderno o clásico
+The extension automatically detects:
 
-### 🆕 Nuevas Opciones
+- **Angular Version**: Reads package.json to determine the version
+- **Project Type**: Identifies if it uses standalone components or modules
+- **Routing Configuration**: Decides between modern or classic routing
 
-- **Incluir Módulo**: Genera archivos .module.ts para patrones que lo requieran
-- **Routing Adaptivo**: 
-  - Angular 19+: Archivos .routes.ts con functional guards
-  - Angular <19: Módulos de routing clásicos
-- **Detección de Proyecto**: Mensaje informativo sobre la versión detectada
+### 🆕 New Options
 
-## 🚀 Uso
+- **Include Module**: Generates .module.ts files for patterns that require them
+- **Adaptive Routing**:
+  - Angular 19+: .routes.ts files with functional guards
+  - Angular <19: Classic routing modules
+- **Project Detection**: Informative message about detected version
 
-1. **Haz clic derecho** en una carpeta en el Explorer de VS Code
-2. Selecciona **"Generate Angular Component"**
-3. Elige el **patrón de arquitectura** deseado
-4. Ingresa el **nombre del componente**
-5. Los archivos se generan automáticamente en la carpeta seleccionada
+## 🚀 Usage
 
-### Patrones Disponibles
+1. **Right-click** on a folder in VS Code Explorer
+2. Select **"Generate Angular Component with Pattern"**
+3. Choose the desired **architecture pattern**
+4. Enter the **component name**
+5. Files are automatically generated in the selected folder
+
+### Available Patterns
 
 #### 🎯 MVP (Model-View-Presenter)
-Separa la lógica de presentación del componente usando un patrón MVP clásico.
+
+Separates presentation logic from the component using a classic MVP pattern.
+
 ```
 component-name/
 ├── component-name.component.ts
@@ -51,7 +54,9 @@ component-name/
 ```
 
 #### 🏗️ Clean Architecture
-Implementa una arquitectura limpia con casos de uso, repositorios e interfaces bien definidas.
+
+Implements clean architecture with use cases, repositories, and well-defined interfaces.
+
 ```
 component-name/
 ├── component-name.component.ts
@@ -66,7 +71,9 @@ component-name/
 ```
 
 #### ⚡ Standalone Component
-Componente independiente moderno de Angular 14+ con imports directos.
+
+Modern independent component from Angular 14+ with direct imports.
+
 ```
 component-name/
 ├── component-name.component.ts
@@ -75,7 +82,9 @@ component-name/
 ```
 
 #### 🧠 Smart Component
-Componente inteligente que maneja estado y lógica de negocio.
+
+Intelligent component that handles state and business logic.
+
 ```
 component-name/
 ├── component-name.component.ts
@@ -85,7 +94,9 @@ component-name/
 ```
 
 #### 🎨 Dumb Component
-Componente de presentación puro que solo recibe datos via inputs.
+
+Pure presentation component that only receives data via inputs.
+
 ```
 component-name/
 ├── component-name.component.ts
@@ -93,106 +104,115 @@ component-name/
 └── component-name.component.scss
 ```
 
-## 🛠️ Requisitos
+## 🛠️ Requirements
 
-- **VS Code** 1.74.0 o superior
-- **Node.js** 16.x o superior
-- Proyecto **Angular** (opcional, para mejor integración)
+- **VS Code** 1.101.0 or higher
+- **Node.js** 16.x or higher
+- **Angular** project (optional, for better integration)
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-Esta extensión no requiere configuración adicional. Funciona automáticamente al detectar el comando desde el menú contextual.
+This extension requires no additional configuration. It works automatically when invoked from the context menu.
 
-## 🏗️ Arquitectura de la Extensión
+## 🏗️ Extension Architecture
 
-La extensión está estructurada de forma modular para facilitar el mantenimiento y la extensión:
+The extension is structured modularly to facilitate maintenance and extension:
 
 ```
 src/
-├── extension.ts              # Punto de entrada principal
+├── extension.ts              # Main entry point
 ├── generators/
-│   └── factory.ts           # Factory para seleccionar generadores
+│   ├── base-generator.ts    # Base generator class
+│   └── factory.ts           # Factory for selecting generators
 ├── templates/
 │   ├── mvp/
-│   │   ├── templates.ts     # Templates del patrón MVP
-│   │   └── generator.ts     # Generador MVP
+│   │   ├── templates.ts     # MVP pattern templates
+│   │   └── generator.ts     # MVP generator
 │   ├── clean-architecture/
-│   │   ├── templates.ts     # Templates Clean Architecture
-│   │   └── generator.ts     # Generador Clean Architecture
+│   │   ├── templates.ts     # Clean Architecture templates
+│   │   └── generator.ts     # Clean Architecture generator
 │   ├── standalone/
-│   │   ├── templates.ts     # Templates Standalone
-│   │   └── generator.ts     # Generador Standalone
+│   │   ├── templates.ts     # Standalone templates
+│   │   └── generator.ts     # Standalone generator
 │   ├── smart-component/
-│   │   ├── templates.ts     # Templates Smart Component
-│   │   └── generator.ts     # Generador Smart Component
+│   │   ├── templates.ts     # Smart Component templates
+│   │   └── generator.ts     # Smart Component generator
 │   └── dumb-component/
-│       ├── templates.ts     # Templates Dumb Component
-│       └── generator.ts     # Generador Dumb Component
+│       ├── templates.ts     # Dumb Component templates
+│       └── generator.ts     # Dumb Component generator
 ├── types/
-│   └── index.ts             # Tipos TypeScript compartidos
+│   └── index.ts             # Shared TypeScript types
 └── utils/
-    └── string.ts            # Utilidades para strings
+    ├── angular-detector.ts  # Angular project detection
+    ├── module-templates.ts  # Module and routing templates
+    └── string.ts            # String utilities
 ```
 
-## 🚧 Desarrollo
+## 🚧 Development
 
-Para contribuir o modificar la extensión:
+To contribute or modify the extension:
 
-1. **Clonar el repositorio**
-2. **Instalar dependencias**: `npm install`
-3. **Compilar en modo watch**: `npm run watch`
-4. **Abrir en VS Code** y presionar `F5` para ejecutar en modo debug
-5. **Hacer cambios** en los templates o generadores según sea necesario
+1. **Clone the repository**
+2. **Install dependencies**: `npm install`
+3. **Compile in watch mode**: `npm run watch`
+4. **Open in VS Code** and press `F5` to run in debug mode
+5. **Make changes** to templates or generators as needed
 
-### Agregar un Nuevo Patrón
+### Adding a New Pattern
 
-1. Crear nueva carpeta en `src/templates/nuevo-patron/`
-2. Crear `templates.ts` con los templates del patrón
-3. Crear `generator.ts` con la lógica de generación
-4. Actualizar `GeneratorFactory` en `src/generators/factory.ts`
-5. Agregar el nuevo patrón a las opciones en `extension.ts`
+1. Create a new folder in `src/templates/new-pattern/`
+2. Create `templates.ts` with the pattern templates
+3. Create `generator.ts` with the generation logic
+4. Update `GeneratorFactory` in `src/generators/factory.ts`
+5. Add the new pattern to options in `extension.ts`
 
-## 📝 Próximas Características
+## 📝 Upcoming Features
 
-- [ ] Configuración personalizable via settings de VS Code
-- [ ] Soporte para tests automáticos (jasmine/jest)
-- [ ] Templates personalizables por usuario
-- [ ] Soporte para Storybook
-- [ ] Integración con Angular CLI
-- [ ] Soporte para microfrontends
-- [ ] Templates para services, guards y pipes
+- [ ] Customizable configuration via VS Code settings
+- [ ] Automatic test support (jasmine/jest)
+- [ ] User-customizable templates
+- [ ] Storybook support
+- [ ] Angular CLI integration
+- [ ] Microfrontend support
+- [ ] Templates for services, guards, and pipes
 
-## 🐛 Problemas Conocidos
+## 🐛 Known Issues
 
-Actualmente no hay problemas conocidos. Si encuentras algún bug, por favor reporta un issue en el repositorio.
+Currently, there are no known issues. If you encounter any bugs, please report an issue in the repository.
 
-## 📋 Notas de Versión
+## 📋 Release Notes
+
+### 1.0.1
+
+- Improved icon with better visibility and professional design
+- Enhanced template generation with Angular version detection
+- Added module and routing support with adaptive generation
 
 ### 1.0.0
 
-- Lanzamiento inicial con 5 patrones de arquitectura
-- Soporte completo para Angular moderno
-- Estructura modular de templates y generadores
+- Initial release with 5 architecture patterns
+- Full support for modern Angular
+- Modular structure of templates and generators
 
 ---
 
-## Following extension guidelines
+## Following Extension Guidelines
 
 Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
 
 ## Working with Markdown
 
 You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
+- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
+- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
 
-## For more information
+## For More Information
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**

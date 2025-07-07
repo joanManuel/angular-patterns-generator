@@ -9,3 +9,11 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+node_modules/**
+out/test/**
+.git/**
+.github/**
+*.vsix
+.DS_Store
+PROJECT_SUMMARY.md
+icon.svg

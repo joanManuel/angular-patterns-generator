@@ -1,14 +1,39 @@
 {
   "name": "angular-patterns-generator",
-  "displayName": "angular-patterns-generator",
+  "displayName": "Angular Patterns Generator",
   "description": "Generate Angular components, services, and modules with multiple architecture patterns such as MVP, Clean Architecture, Standalone Components, and more. Enhance your development workflow by scaffolding consistent, scalable structures directly from VS Code.",
-  "version": "0.0.1",
+  "version": "1.0.3",
+  "publisher": "joantz",
+  "author": {
+    "name": "Joan Torres"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joantorres/angular-patterns-generator.git"
+  },
+  "homepage": "https://github.com/joantorres/angular-patterns-generator#readme",
+  "bugs": {
+    "url": "https://github.com/joantorres/angular-patterns-generator/issues"
+  },
+  "keywords": [
+    "angular",
+    "generator",
+    "patterns",
+    "mvp",
+    "clean-architecture",
+    "standalone",
+    "typescript",
+    "scaffolding"
+  ],
   "engines": {
     "vscode": "^1.101.0"
   },
   "categories": [
+    "Snippets",
     "Other"
   ],
+  "icon": "icon.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
